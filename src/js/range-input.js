@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const priceOptions = document.querySelectorAll('input[name="price-range"]');
-    
+
     priceOptions.forEach(option => {
         option.addEventListener('change', filterProducts);
     });
-        setupFilterListeners();
-    
+    setupFilterListeners();
+
     displayProducts(products);
 });
 
@@ -15,13 +15,12 @@ function setupFilterListeners() {
         checkbox.addEventListener('change', filterProducts);
     });
 }
-
 function filterProducts() {
     const selectedTypes = getSelectedValues('type');
     const selectedBrands = getSelectedValues('brand');
     const selectedFeatures = getSelectedValues('features');
     const selectedPriceRange = getSelectedPriceRange();
-    
+
     productsContainer.innerHTML = `
         <div class="loading">
             <div class="loader"></div>
@@ -64,11 +63,11 @@ function filterProducts() {
 
 function getSelectedPriceRange() {
     const selectedOption = document.querySelector('input[name="price-range"]:checked');
-    
+
     if (!selectedOption || selectedOption.value === 'all') {
-        return { min: null, max: null }; 
+        return { min: null, max: null };
     }
-    
+
     const [min, max] = selectedOption.value.split('-').map(Number);
     return { min, max };
 }
@@ -83,12 +82,12 @@ document.addEventListener('click', (e) => {
         document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
             checkbox.checked = false;
         });
-        
+
         const allPriceOption = document.getElementById('price-all');
         if (allPriceOption) {
             allPriceOption.checked = true;
         }
-        
+
         displayProducts(products);
     }
 });

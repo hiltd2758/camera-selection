@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lens Explorer | Find Your Perfect Camera</title>
+    <title>Camera Explorer | Find Your Perfect Camera</title>
     <meta name="description" content="Discover the perfect camera with our interactive camera finder tool.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../src/css/style.css">
 </head>
 
 <body>
@@ -18,7 +18,7 @@
     <header>
         <div class="logo">
             <i class="fas fa-camera-retro logo-icon"></i>
-            Lens Explorer
+            Camera Explorer
         </div>
     </header>
     <main class="container">
@@ -205,6 +205,105 @@
                 <!-- js -->
             </div>
         </section>
+
+        <section id="blog" class="blog-section">
+            <h2>Blog Nhiếp Ảnh</h2>
+            <p class="blog-intro">Khám phá kiến thức, chia sẻ kinh nghiệm và cập nhật xu hướng mới nhất trong thế giới
+                nhiếp ảnh</p>
+
+            <div class="blog-categories">
+                <button class="blog-category-btn active">Tất cả</button>
+                <button class="blog-category-btn">Hướng dẫn</button>
+                <button class="blog-category-btn">Đánh giá</button>
+                <button class="blog-category-btn">Phụ kiện</button>
+                <button class="blog-category-btn">Kỹ thuật</button>
+            </div>
+
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-img-container">
+                        <img src="" alt="Máy ảnh mirrorless">
+                        <span class="blog-category">Đánh giá</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3>So sánh 5 máy ảnh mirrorless tốt nhất cho người mới bắt đầu năm 2025</h3>
+                        <p>Khám phá những lựa chọn mirrorless hàng đầu với giá cả phải chăng dành cho người mới làm quen
+                            với nhiếp ảnh.</p>
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> 28/03/2025</span>
+                            <span><i class="fas fa-eye"></i> 1,245</span>
+                        </div>
+                        <a href="blog-detail.html" class="read-more">Đọc tiếp <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-img-container">
+                        <img src="" alt="Ống kính chụp chân dung">
+                        <span class="blog-category">Phụ kiện</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3>Top 3 ống kính chân dung đáng mua nhất cho máy ảnh Canon</h3>
+                        <p>Những ống kính chân dung tốt nhất cho máy ảnh Canon, từ bình dân đến cao cấp, giúp bạn tạo ra
+                            những bức ảnh rực rỡ.</p>
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> 22/03/2025</span>
+                            <span><i class="fas fa-eye"></i> 895</span>
+                        </div>
+                        <a href="#" class="read-more">Đọc tiếp <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-img-container">
+                        <img src="" alt="Chụp ảnh phong cảnh">
+                        <span class="blog-category">Kỹ thuật</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3>Bí quyết chụp ảnh phong cảnh đẹp mê hoặc trong mọi điều kiện ánh sáng</h3>
+                        <p>Những kỹ thuật và thiết lập máy ảnh giúp bạn chụp được những bức ảnh phong cảnh ngoạn mục mọi
+                            thời điểm trong ngày.</p>
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> 15/03/2025</span>
+                            <span><i class="fas fa-eye"></i> 1,567</span>
+                        </div>
+                        <a href="#" class="read-more">Đọc tiếp <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card">
+                    <div class="blog-img-container">
+                        <img src="" alt="Hướng dẫn chụp ảnh ban đêm">
+                        <span class="blog-category">Hướng dẫn</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3>Hướng dẫn toàn diện về chụp ảnh ban đêm cho người mới bắt đầu</h3>
+                        <p>Từ cài đặt cơ bản đến kỹ thuật nâng cao giúp bạn làm chủ nghệ thuật chụp ảnh trong điều kiện
+                            thiếu sáng.</p>
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> 10/03/2025</span>
+                            <span><i class="fas fa-eye"></i> 2,103</span>
+                        </div>
+                        <a href="#" class="read-more">Đọc tiếp <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="blog-newsletter">
+                <div class="newsletter-content">
+                    <h3>Đăng ký nhận thông tin</h3>
+                    <p>Nhận những bài viết mới nhất và mẹo nhiếp ảnh hàng tuần vào hộp thư của bạn</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email của bạn" required>
+                        <button type="submit" class="neon-button">Đăng ký</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="view-all-container">
+                <a href="#" class="view-all-btn">Xem tất cả bài viết <i class="fas fa-long-arrow-alt-right"></i></a>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -264,7 +363,9 @@
             </div>
         </div>
     </div>
-    <script src="app.js"></script>
-    <script src="range-input.js"></script>
+    <script src="../src/js/app.js"></script>
+    <script src="../src/js/range-input.js"></script>
+    <script src="../src/js/range-input.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết bài viết - Blog Nhiếp Ảnh</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #f637ec;
+            --secondary-color: #10c4e8;
+            --accent-color: #ebff00;
+            --dark-bg: #1a0133;
+            --card-bg: #1c1436;
+            --text-color: #f5f5ff;
+            --border-radius: 16px;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: rgba(26, 1, 51, 0.9);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(246, 55, 236, 0.2);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--secondary-color);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--secondary-color);
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .blog-detail-page {
+            padding: 4rem 0;
+        }
+
+        .blog-detail-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .blog-detail-category {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+            padding: 0.4rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .blog-detail-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.3;
+        }
+
+        .blog-detail-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            color: rgba(245, 245, 255, 0.7);
+        }
+
+        .blog-detail-meta span {
+            display: flex;
+            align-items: center;
+        }
+
+        .blog-detail-meta i {
+            margin-right: 0.5rem;
+        }
+
+        .blog-detail-image-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .blog-detail-image {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .blog-detail-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .blog-detail-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-detail-content h2 {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin: 2.5rem 0 1.5rem;
+        }
+
+        .blog-detail-content h3 {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin: 2rem 0 1rem;
+        }
+
+        .blog-detail-content ul,
+        .blog-detail-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .blog-detail-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-detail-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: rgba(245, 245, 255, 0.9);
+        }
+
+        .blog-detail-content img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .blog-detail-content a {
+            color: var(--secondary-color);
+            text-decoration: underline;
+            transition: var(--transition);
+        }
+
+        .blog-detail-content a:hover {
+            color: var(--primary-color);
+        }
+
+        .author-section {
+            max-width: 800px;
+            margin: 4rem auto;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .author-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            box-shadow: 0 0 15px rgba(246, 55, 236, 0.5);
+        }
+
+        .author-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        .author-info p {
+            margin-bottom: 1rem;
+            color: rgba(245, 245, 255, 0.9);
+        }
+
+        .author-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .author-social a {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .author-social a:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .related-posts {
+            max-width: 900px;
+            margin: 4rem auto;
+        }
+
+        .related-posts h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        .related-posts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .related-post {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+
+        .related-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .related-post-img {
+            position: relative;
+        }
+
+        .related-post-img img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .related-post-category {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .related-post-content {
+            padding: 1.2rem;
+        }
+
+        .related-post-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            color: var(--secondary-color);
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            color: var(--accent-color);
+            font-weight: 600;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .read-more i {
+            margin-left: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        .read-more:hover i {
+            transform: translateX(5px);
+        }
+
+        .comments-section {
+            max-width: 800px;
+            margin: 4rem auto;
+        }
+
+        .comments-section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        .comment-form {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .comment-form h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(16, 196, 232, 0.3);
+            background-color: rgba(28, 20, 54, 0.5);
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 10px rgba(16, 196, 232, 0.3);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(246, 55, 236, 0.5);
+        }
+
+        .submit-btn:hover {
+            background-color: var(--accent-color);
+            box-shadow: 0 0 20px rgba(235, 255, 0, 0.7);
+            transform: translateY(-3px);
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .comment {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .comment-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .comment-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+        }
+
+        .comment-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .comment-author {
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .comment-date {
+            margin-left: auto;
+            font-size: 0.9rem;
+            color: rgba(245, 245, 255, 0.6);
+        }
+
+        .comment-body {
+            line-height: 1.6;
+        }
+
+        .comment-actions {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .comment-action {
+            color: rgba(245, 245, 255, 0.7);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .comment-action i {
+            margin-right: 0.5rem;
+        }
+
+        .comment-action:hover {
+            color: var(--primary-color);
+        }
+
+        .share-section {
+            max-width: 800px;
+            margin: 3rem auto;
+            text-align: center;
+        }
+
+        .share-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .share-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .share-button.facebook:hover {
+            background-color: #3b5998;
+            transform: translateY(-3px);
+        }
+
+        .share-button.twitter:hover {
+            background-color: #1da1f2;
+            transform: translateY(-3px);
+        }
+
+        .share-button.pinterest:hover {
+            background-color: #bd081c;
+            transform: translateY(-3px);
+        }
+
+        .share-button.linkedin:hover {
+            background-color: #0077b5;
+            transform: translateY(-3px);
+        }
+
+        .share-button.whatsapp:hover {
+            background-color: #25d366;
+            transform: translateY(-3px);
+        }
+
+        .back-to-blog {
+            display: inline-flex;
+            align-items: center;
+            margin: 3rem auto;
+            background-color: transparent;
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .back-to-blog i {
+            margin-right: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .back-to-blog:hover {
+            background-color: var(--secondary-color);
+            color: var(--dark-bg);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(16, 196, 232, 0.4);
+        }
+
+        .back-to-blog:hover i {
+            transform: translateX(-5px);
+        }
+
+        footer {
+            background-color: rgba(26, 1, 51, 0.8);
+            padding: 4rem 0 2rem;
+            border-top: 1px solid rgba(246, 55, 236, 0.2);
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .footer-description {
+            margin-bottom: 1.5rem;
+            color: rgba(245, 245, 255, 0.8);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(246, 55, 236, 0.2);
+            color: var(--text-color);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+            transform: translateY(-5px);
+        }
+
+        .footer-heading {
+            font-size: 1.4rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(245, 245, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a i {
+            margin-right: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        .footer-newsletter p {
+            margin-bottom: 1.5rem;
+            color: rgba(245, 245, 255, 0.8);
+        }
+
+        .footer-newsletter-form {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+
+        .footer-newsletter-form input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border-radius: 8px 0 0 8px;
+            border: 1px solid rgba(16, 196, 232, 0.3);
+            background-color: rgba(28, 20, 54, 0.5);
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+
+        .footer-newsletter-form input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+
+        .footer-newsletter-form button {
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+            border: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 0 8px 8px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .footer-newsletter-form button:hover {
+            background-color: var(--accent-color);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(245, 245, 255, 0.1);
+            color: rgba(245, 245, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(246, 55, 236, 0.5);
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(235, 255, 0, 0.6);
+        }
+
+        @media (max-width: 992px) {
+            .blog-detail-title {
+                font-size: 2.2rem;
+            }
+
+            .author-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .author-social {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                flex-direction: column;
+                background-color: var(--dark-bg);
+                width: 100%;
+                text-align: center;
+                padding: 2rem 0;
+                transition: 0.3s;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                margin: 1.5rem 0;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .blog-detail-title {
+                font-size: 1.8rem;
+            }
+
+            .blog-detail-meta {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            .blog-detail-content {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .related-posts-container {
+                grid-template-columns: 1fr;
+            }
+
+            .comment-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .comment-date {
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-camera-retro"></i>Photo Vision
+            </a>
+
+            <button class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Trang chủ</a></li>
+                <li class="nav-item"><a href="blog.html" class="nav-link active">Blog</a></li>
+                <li class="nav-item"><a href="gallery.html" class="nav-link">Bộ sưu tập</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">Giới thiệu</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Liên hệ</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="blog-detail-page">
+            <div class="container">
+                <!-- Blog Header -->
+                <div class="blog-detail-header">
+                    <span class="blog-detail-category">Thủ thuật nhiếp ảnh</span>
+                    <h1 class="blog-detail-title">10 Kỹ thuật chụp ảnh chân dung đẹp mê hoặc cho người mới bắt đầu</h1>
+                    <div class="blog-detail-meta">
+                        <span><i class="far fa-user"></i> Nguyễn Văn Anh</span>
+                        <span><i class="far fa-calendar"></i> 15 tháng 3, 2024</span>
+                        <span><i class="far fa-eye"></i> 2,584 lượt xem</span>
+                        <span><i class="far fa-comment"></i> 18 bình luận</span>
+                    </div>
+                </div>
+
+                <!-- Featured Image -->
+                <div class="blog-detail-image-container">
+                    <img src="/api/placeholder/1000/600" alt="Chụp ảnh chân dung" class="blog-detail-image">
+                </div>
+
+                <!-- Blog Content -->
+                <div class="blog-detail-content">
+                    <p>Chụp ảnh chân dung là một trong những thể loại nhiếp ảnh phổ biến và hấp dẫn nhất. Việc nắm bắt
+                        được cảm xúc, cá tính và vẻ đẹp của đối tượng là một kỹ năng đòi hỏi sự kiên nhẫn và thực hành.
+                        Bài viết này sẽ giới thiệu 10 kỹ thuật đơn giản nhưng hiệu quả giúp bạn chụp được những bức ảnh
+                        chân dung đẹp mê hoặc, ngay cả khi bạn là người mới bắt đầu.</p>
+
+                    <h2>1. Hiểu và sử dụng tốt ánh sáng tự nhiên</h2>
+                    <p>Ánh sáng là yếu tố quan trọng nhất trong nhiếp ảnh, đặc biệt là chụp chân dung. Ánh sáng tự nhiên
+                        mềm mại từ cửa sổ hoặc trong bóng râm vào buổi sáng sớm hay chiều muộn (giờ vàng) tạo ra hiệu
+                        ứng ánh sáng đẹp mắt và tự nhiên cho chân dung. Tránh ánh sáng trực tiếp từ mặt trời vào giữa
+                        trưa vì nó tạo ra bóng cứng và không phù hợp cho chân dung.</p>
+
+                    <blockquote>
+                        "Nhiếp ảnh gia không tạo ra hình ảnh, họ khám phá nó. Và góc độ ánh sáng chính là chìa khóa cho
+                        sự khám phá đó." - Arnold Newman
+                    </blockquote>
+
+                    <h2>2. Sử dụng khẩu độ lớn để tạo hiệu ứng bokeh</h2>
+                    <p>Một trong những cách hiệu quả để làm nổi bật đối tượng trong ảnh chân dung là sử dụng khẩu độ lớn
+                        (số f nhỏ như f/1.8, f/2.8) để tạo ra hiệu ứng bokeh - làm mờ hậu cảnh. Điều này giúp đối tượng
+                        chính của bạn nổi bật và tạo ra chiều sâu cho bức ảnh. Nếu bạn là người mới bắt đầu, hãy đầu tư
+                        vào một ống kính có khẩu độ lớn như 50mm f/1.8 - đây được gọi là "ống kính nifty fifty" với giá
+                        cả phải chăng nhưng chất lượng tuyệt vời.</p>
+
+                    <h2>3. Chú ý đến bố cục và quy tắc 1/3</h2>
+                    <p>Thay vì đặt đối tượng ở giữa khung hình, hãy thử sử dụng quy tắc 1/3. Tưởng tượng khung hình được
+                        chia thành 9 phần bằng nhau bằng hai đường ngang và hai đường dọc. Đặt đối tượng tại các điểm
+                        giao nhau của các đường này để tạo ra bố cục hấp dẫn và cân bằng hơn. Hầu hết các máy ảnh và
+                        điện thoại đều có tùy chọn hiển thị lưới này để giúp bạn bố cục dễ dàng hơn.</p>
+
+                    <h2>4. Chọn nền đơn giản không gây mất tập trung</h2>
+                    <p>Một nền đơn giản, không có yếu tố gây mất tập trung sẽ giúp người xem tập trung vào đối tượng
+                        chính. Tìm những bức tường màu trơn, khu vực có cây xanh đồng nhất, hoặc thậm chí là bầu trời
+                        làm nền. Nếu bạn không thể tìm được nền phù hợp, hãy sử dụng khẩu độ lớn như đã đề cập ở trên để
+                        làm mờ hậu cảnh.</p>
+
+                    <h2>5. Định hướng và giao tiếp với người mẫu</h2>
+                    <p>Một trong những thách thức lớn nhất của nhiếp ảnh chân dung là làm cho đối tượng cảm thấy thoải
+                        mái và tự nhiên. Hãy trò chuyện và hướng dẫn người mẫu một cách rõ ràng về tư thế, hướng nhìn và
+                        biểu cảm. Đôi khi những khoảnh khắc tự nhiên nhất xuất hiện giữa các lần chụp chính thức, vì vậy
+                        hãy luôn sẵn sàng bấm máy.</p>
+
+                    <h3>Một số gợi ý về tư thế:</h3>
+                    <ul>
+                        <li>Yêu cầu người mẫu nghiêng nhẹ đầu</li>
+                        <li>Tạo khoảng cách giữa cánh tay và thân người</li>
+                        <li>Đặt trọng lượng cơ thể lên một chân</li>
+                        <li>Tránh để người mẫu nhìn thẳng vào máy ảnh nếu họ cảm thấy không thoải mái</li>
+                    </ul>
+
+                    <h2>6. Tập trung vào đôi mắt</h2>
+                    <p>Đôi mắt là cửa sổ tâm hồn, và trong ảnh chân dung, việc đôi mắt được lấy nét sắc nét là vô cùng
+                        quan trọng. Hầu hết các máy ảnh hiện đại có tính năng nhận diện khuôn mặt và lấy nét tự động vào
+                        mắt. Nếu bạn đang sử dụng lấy nét thủ công hoặc chọn điểm lấy nét, hãy luôn đảm bảo đôi mắt của
+                        đối tượng được lấy nét tốt nhất.</p>
+
+                    <h2>7. Sử dụng các phụ kiện đơn giản để tăng sự thú vị</h2>
+                    <p>Các phụ kiện đơn giản như nón, kính mát, hoa, hoặc thậm chí là một cuốn sách có thể tạo ra yếu tố
+                        thú vị cho bức ảnh chân dung. Phụ kiện không chỉ tạo điểm nhấn mà còn giúp người mẫu cảm thấy
+                        thoải mái hơn vì họ có thứ gì đó để tương tác. Tuy nhiên, đừng để phụ kiện lấn át người mẫu -
+                        chúng chỉ nên là yếu tố bổ sung.</p>
+
+                    <h2>8. Chụp từ góc độ phù hợp</h2>
+                    <p>Góc độ chụp có thể thay đổi hoàn toàn cảm nhận về đối tượng. Chụp từ trên cao có thể làm cho
+                        người mẫu trông nhỏ bé hơn và tạo cảm giác mong manh, trong khi chụp từ dưới lên có thể tạo ra
+                        cảm giác mạnh mẽ và uy quyền. Đối với hầu hết các chân dung thông thường, chụp ngang tầm mắt
+                        thường mang lại kết quả tự nhiên nhất.</p>
+
+                    <h2>9. Thử nghiệm với các loại ánh sáng khác nhau</h2>
+                    <p>Ngoài ánh sáng tự nhiên, hãy thử nghiệm với các nguồn sáng khác nhau như ánh sáng cửa sổ, ánh
+                        sáng ngược, ánh sáng từ một bên, hoặc thậm chí là đèn flash với bộ khuếch tán. Mỗi loại ánh sáng
+                        sẽ tạo ra tâm trạng và cảm xúc khác nhau trong ảnh. Ánh sáng mạnh từ một bên có thể tạo ra độ
+                        tương phản cao và drama, trong khi ánh sáng khuếch tán mềm mại tạo ra vẻ đẹp nhẹ nhàng và lãng
+                        mạn.</p>
+
+                    <h2>10. Hậu kỳ đơn giản nhưng hiệu quả</h2>
+                    <p>Hậu kỳ là phần không thể thiếu trong quy trình chụp ảnh chân dung hiện đại. Ngay cả những điều
+                        chỉnh đơn giản về độ sáng, độ tương phản, màu sắc và độ sắc nét cũng có thể nâng tầm bức ảnh của
+                        bạn. Các phần mềm chỉnh sửa như Adobe Lightroom, Capture One, hoặc thậm chí là ứng dụng trên
+                        điện thoại như Snapseed đều cung cấp các công cụ mạnh mẽ để hoàn thiện ảnh chân dung của bạn.
+                    </p>
+
+                    <p>Hãy nhớ rằng, việc thành thạo các kỹ thuật trên đòi hỏi thời gian và sự thực hành. Đừng ngại thử
+                        nghiệm và rút ra bài học từ mỗi buổi chụp. Với sự kiên nhẫn và đam mê, bạn sẽ nhanh chóng nâng
+                        cao kỹ năng chụp ảnh chân dung của mình.</p>
+                </div>
+
+                <!-- Author Section -->
+                <div class="author-section">
+                    <img src="/api/placeholder/120/120" alt="Nguyễn Văn Anh" class="author-image">
+                    <div class="author-info">
+                        <h3>Nguyễn Văn Anh</h3>
+                        <p>Nhiếp ảnh gia chuyên nghiệp với hơn 10 năm kinh nghiệm trong lĩnh vực ảnh chân dung và thời
+                            trang. Từng đoạt nhiều giải thưởng và có các tác phẩm được đăng trên nhiều tạp chí nổi
+                            tiếng.</p>
+                            <div class="author-social">
+                                <a href="#" aria-label="Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" aria-label="Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" aria-label="Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" aria-label="YouTube">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </div>
+                            
+                    </div>
+                </div>
+
+                <!-- Share Section -->
+                <div class="share-section">
+                    <h3>Chia sẻ bài viết này</h3>
+                    <div class="share-buttons">
+                        <a href="#" class="share-button facebook" aria-label="Chia sẻ lên Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="share-button twitter" aria-label="Chia sẻ lên Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="share-button pinterest" aria-label="Chia sẻ lên Pinterest">
+                            <i class="fab fa-pinterest-p"></i>
+                        </a>
+                        <a href="#" class="share-button linkedin" aria-label="Chia sẻ lên LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="share-button whatsapp" aria-label="Chia sẻ qua WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                    
+                </div>
+
+                <!-- Related Posts -->
+                <div class="related-posts">
+                    <h2>Bài viết liên quan</h2>
+                    <div class="related-posts-container">
+                        <div class="related-post">
+                            <div class="related-post-img">
+                                <img src="/api/placeholder/300/200" alt="Bài viết liên quan">
+                                <span class="related-post-category">Thủ thuật</span>
+                            </div>
+                            <div class="related-post-content">
+                                <h4>Cách chọn ống kính phù hợp cho nhiếp ảnh chân dung</h4>
+                                <a href="#" class="read-more">Đọc tiếp <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="related-post">
+                            <div class="related-post-img">
+                                <img src="/api/placeholder/300/200" alt="Bài viết liên quan">
+                                <span class="related-post-category">Thiết bị</span>
+                            </div>
+                            <div class="related-post-content">
+                                <h4>Top 5 đèn flash tốt nhất cho nhiếp ảnh chân dung năm 2024</h4>
+                                <a href="#" class="read-more">Đọc tiếp <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="related-post">
+                            <div class="related-post-img">
+                                <img src="/api/placeholder/300/200" alt="Bài viết liên quan">
+                                <span class="related-post-category">Hậu kỳ</span>
+                            </div>
+                            <div class="related-post-content">
+                                <h4>Hướng dẫn chỉnh sửa màu da tự nhiên trong Lightroom</h4>
+                                <a href="#" class="read-more">Đọc tiếp <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comments Section -->
+                <div class="comments-section">
+                    <h2>Bình luận (18)</h2>
+
+                    <form class="comment-form">
+                        <h3>Để lại bình luận</h3>
+                        <div class="form-group">
+                            <label for="name">Họ tên</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment">Bình luận</label>
+                            <textarea id="comment" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Gửi bình luận</button>
+                    </form>
+
+                    <div class="comments-list">
+                        <div class="comment">
+                            <div class="comment-header">
+                                <div class="comment-avatar">
+                                    <img src="/api/placeholder/50/50" alt="User avatar">
+                                </div>
+                                <div class="comment-author">Trần Thanh Hà</div>
+                                <div class="comment-date">10 tháng 3, 2024</div>
+                            </div>
+                            <div class="comment-body">
+                                <p>Bài viết rất hay và bổ ích! Tôi đặc biệt thích phần nói về cách sử dụng ánh sáng tự
+                                    nhiên. Đã áp dụng và thấy kết quả rõ rệt. Cảm ơn tác giả!</p>
+                            </div>
+                            <div class="comment-actions">
+                                <div class="comment-action"><i class="far fa-thumbs-up"></i> Thích (5)</div>
+                                <div class="comment-action"><i class="far fa-reply"></i> Trả lời</div>
+                            </div>
+                        </div>
+
+                        <div class="comment">
+                            <div class="comment-header">
+                                <div class="comment-avatar">
+                                    <img src="/api/placeholder/50/50" alt="User avatar">
+                                </div>
+                                <div class="comment-author">Nguyễn Hoàng Minh</div>
+                                <div class="comment-date">8 tháng 3, 2024</div>
+                            </div>
+                            <div class="comment-body">
+                                <p>Theo kinh nghiệm của tôi, việc giao tiếp với người mẫu là yếu tố quyết định nhất để
+                                    có ảnh chân dung đẹp. Có thể thêm một mục về cách tạo không khí thoải mái khi chụp
+                                    không anh?</p>
+                            </div>
+                            <div class="comment-actions">
+                                <div class="comment-action"><i class="far fa-thumbs-up"></i> Thích (3)</div>
+                                <div class="comment-action"><i class="far fa-reply"></i> Trả lời</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="center-text">
+                    <a href="../public/index.html" class="back-to-blog">
+                        <i class="fas fa-arrow-left"></i> Quay lại danh sách bài viết
+                    </a>
+                </div>
+                
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-about">
+                <a href="index.html" class="footer-logo">
+                    <i class="fas fa-camera-retro"></i> Photo Vision
+                </a>
+                <p class="footer-description">
+                    Chúng tôi là cộng đồng đam mê nhiếp ảnh, chia sẻ kiến thức, kỹ thuật và cảm hứng sáng tạo cho những
+                    người yêu thích nghệ thuật thị giác.
+                </p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" aria-label="Pinterest">
+                        <i class="fab fa-pinterest"></i>
+                    </a>
+                </div>
+                
+            </div>
+
+            <div class="footer-links">
+                <h3 class="footer-heading">Liên kết nhanh</h3>
+                <ul class="footer-links">
+                    <li><a href="../public/index.html"><i class="fas fa-chevron-right"></i> Trang chủ</a></li>
+                    <li><a href="blog.html"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                    <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Bộ sưu tập</a></li>
+                    <li><a href="about.html"><i class="fas fa-chevron-right"></i> Giới thiệu</a></li>
+                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Liên hệ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h3 class="footer-heading">Danh mục</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Nhiếp ảnh chân dung</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Nhiếp ảnh phong cảnh</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Nhiếp ảnh đường phố</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Thủ thuật chỉnh sửa</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Review thiết bị</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-newsletter">
+                <h3 class="footer-heading">Đăng ký nhận tin</h3>
+                <p>Nhận các bài viết và mẹo hữu ích về nhiếp ảnh mới nhất vào hộp thư của bạn.</p>
+                <form class="footer-newsletter-form">
+                    <input type="email" placeholder="Email của bạn" required>
+                    <button type="submit" aria-label="Gửi tin nhắn">
+                        <i class="far fa-paper-plane"></i>
+                    </button>
+                </form>
+                <p>Chúng tôi tôn trọng quyền riêng tư của bạn và không bao giờ chia sẻ thông tin cá nhân.</p>
+            </div>
+        </div>
+
+        <div class="copyright">
+            &copy; 2024 Photo Vision. Tất cả quyền được bảo lưu.
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Javascript -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Back to Top Button
+        const backToTopButton = document.querySelector('.back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('active');
+            } else {
+                backToTopButton.classList.remove('active');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Comment Form Submission (example)
+        const commentForm = document.querySelector('.comment-form');
+
+        commentForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Cảm ơn bạn đã bình luận! Bình luận của bạn sẽ được hiển thị sau khi được kiểm duyệt.');
+
+            // Reset form
+            commentForm.reset();
+        });
+
+        // Share buttons functionality (example)
+        const shareButtons = document.querySelectorAll('.share-button');
+
+        shareButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Add social media sharing logic here
+                const platform = button.classList[1]; // get platform name (facebook, twitter, etc.)
+                alert(`Đang chia sẻ bài viết qua ${platform}...`);
+            });
+        });
+
+        // Image Lightbox (optional)
+        const blogImages = document.querySelectorAll('.blog-detail-content img');
+
+        blogImages.forEach(image => {
+            image.addEventListener('click', () => {
+                // Create lightbox for image viewing
+                const lightbox = document.createElement('div');
+                lightbox.classList.add('lightbox');
+
+                const lightboxImg = document.createElement('img');
+                lightboxImg.src = image.src;
+
+                const closeBtn = document.createElement('span');
+                closeBtn.classList.add('lightbox-close');
+                closeBtn.innerHTML = '&times;';
+
+                lightbox.appendChild(lightboxImg);
+                lightbox.appendChild(closeBtn);
+                document.body.appendChild(lightbox);
+
+                // Prevent scrolling when lightbox is open
+                document.body.style.overflow = 'hidden';
+
+                // Close lightbox
+                closeBtn.addEventListener('click', () => {
+                    document.body.removeChild(lightbox);
+                    document.body.style.overflow = 'auto';
+                });
+
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox) {
+                        document.body.removeChild(lightbox);
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            });
+        });
+
+        // Newsletter subscription (example)
+        const newsletterForm = document.querySelector('.footer-newsletter-form');
+
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const emailInput = newsletterForm.querySelector('input[type="email"]');
+
+                if (emailInput.value) {
+                    alert(`Cảm ơn bạn đã đăng ký nhận bản tin với email: ${emailInput.value}`);
+                    newsletterForm.reset();
+                }
+            });
+        }
+    </script>
+</body>
+</html>

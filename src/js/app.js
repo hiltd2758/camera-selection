@@ -5,7 +5,7 @@ const products = [
         category: "Mirrorless",
         price: 2499,
         badge: "New",
-        image: "asset/canon/eos-r6.png",
+        image: "src/asset/canon/eos-r6.png",
         specs: {
             megapixels: "20.1 MP",
             iso: "100-102400",
@@ -20,7 +20,7 @@ const products = [
         category: "Mirrorless",
         price: 2499,
         badge: "Best Seller",
-        image: "asset/sony/a7-iv.png",
+        image: "a7-iv.png",
         specs: {
             megapixels: "33 MP",
             iso: "100-51200",
@@ -35,7 +35,7 @@ const products = [
         category: "Mirrorless",
         price: 1999,
         badge: "",
-        image: "asset/nikon/z6-ii.png",
+        image: "../asset/nikon/z6-ii.png",
         specs: {
             megapixels: "24.5 MP",
             iso: "100-51200",
@@ -50,7 +50,7 @@ const products = [
         category: "Mirrorless",
         price: 1699,
         badge: "Popular",
-        image: "asset/fujifilm/x-t4.png",
+        image: "../asset/fujifilm/x-t4.png",
         specs: {
             megapixels: "26.1 MP",
             iso: "160-12800",
@@ -65,7 +65,7 @@ const products = [
         category: "DSLR",
         price: 1199,
         badge: "",
-        image: "asset/canon/eos-90d.png",
+        image: "../asset/canon/eos-90d.png",
         specs: {
             megapixels: "32.5 MP",
             iso: "100-25600",
@@ -80,7 +80,7 @@ const products = [
         category: "Compact",
         price: 1299,
         badge: "Premium",
-        image: "asset/sony/rx100-vii.png",
+        image: "../asset/sony/rx100-vii.png",
         specs: {
             megapixels: "20.1 MP",
             iso: "100-12800",
@@ -572,7 +572,7 @@ document.addEventListener('click', (e) => {
         const button = e.target.classList.contains('add-to-cart-btn') ?
             e.target : e.target.parentElement;
 
-        button.innerHTML = '<i class="fas fa-check"></i> Added';
+        button.innerHTML = '<i class="fas fa-check"></i> Done';
         button.classList.add('added');
 
         setTimeout(() => {
